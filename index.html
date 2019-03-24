@@ -22,6 +22,15 @@
   <p>Use ctrl-w for show/hide box</p>
   <div class="abc">this is abc element</div>
   <div class="def">this is def element</div>
+  <button id="alert_button">open alert</button>
   <script src="./index.js"></script>
+  <script>
+    var globalValue = 'hello'
+    document
+      .querySelector('#alert_button')
+      .addEventListener('click', function() {
+        alert(globalValue) 
+      })
+  </script>
 </body>
 </html>

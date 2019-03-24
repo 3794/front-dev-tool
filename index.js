@@ -1,11 +1,16 @@
 // ?sp=.abc,background-color,red&sp=.def,width,100,px
 var elContainer = document.createElement('DIV')
 var elTable = document.createElement('TABLE')
+var elTable2 = document.createElement('TABLE')
+elTable.style.backgroundColor = 'gray'
 
-location.search
+var queryString = location.search
   .substr(1)
   .split('&')
   .map(query => query.split('='))
+
+// style properties
+queryString
   .filter(query => query[0] === 'sp')
   .map(query => {
     var values = query[1].split(',')
@@ -53,14 +58,60 @@ location.search
     elTable.appendChild(tr)
   })
 
+// global values
+queryString
+  .filter(query => query[0] === 'gv')
+  .map(query => {
+    var values = query[1].split(',')
+    console.log()
+    return {
+      prop: values[0],
+      value: values[1],
+      type: values[2] || 'string',
+    }
+  })
+  .map(state => {
+    var elIp = document.createElement('input')
+
+    var isNumber = state.type == 'px' || state.type === '%'
+
+    elIp.type = isNumber ? 'number' : 'text'
+    elIp.value = state.value
+
+    elIp.addEventListener('change', e => {
+      if (state.type !== 'string') {
+        window[state.prop] = e.target.value + state.type
+      } else {
+        window[state.prop] = e.target.value
+      }
+    })
+    return { elIp, state }
+  })
+  .map(({ elIp, state }) => {
+    var td1 = document.createElement('TD')
+    var td2 = document.createElement('TD')
+    var tr = document.createElement('TR')
+
+    td1.innerText = state.prop
+    td2.appendChild(elIp)
+    tr.appendChild(td1)
+    tr.appendChild(td2)
+
+    return tr
+  })
+  .forEach(tr => {
+    elTable2.appendChild(tr)
+  })
+
 elContainer.style.position = 'fixed'
 elContainer.style.top = 0
 elContainer.style.right = 0
-elContainer.style.backgroundColor = 'gray'
+elContainer.style.backgroundColor = '#668899'
 elContainer.style.opacity = 0.5
 // elContainer.style.transition = 'all 1s'
 
 elContainer.appendChild(elTable)
+elContainer.appendChild(elTable2)
 document.body.appendChild(elContainer)
 
 var flag = true
