@@ -73,14 +73,14 @@ queryString
   .map(state => {
     var elIp = document.createElement('input')
 
-    var isNumber = state.type == 'px' || state.type === '%'
+    var isNumber = state.type == 'number'
 
     elIp.type = isNumber ? 'number' : 'text'
     elIp.value = state.value
 
     elIp.addEventListener('change', e => {
       if (state.type !== 'string') {
-        window[state.prop] = e.target.value + state.type
+        window[state.prop] = Number(e.target.value)
       } else {
         window[state.prop] = e.target.value
       }
