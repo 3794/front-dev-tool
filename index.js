@@ -25,7 +25,7 @@ queryString
     var elItem = document.querySelector(state.selector)
     var elIp = document.createElement('input')
 
-    var isNumber = state.type == 'px' || state.type === '%'
+    var isNumber = state.type == 'number'
 
     elIp.type = isNumber ? 'number' : 'text'
     elIp.value = state.value
