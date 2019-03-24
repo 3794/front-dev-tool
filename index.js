@@ -58,7 +58,7 @@ queryString
     elTable.appendChild(tr)
   })
 
-// global values
+// global variables
 queryString
   .filter(query => query[0] === 'gv')
   .map(query => {
