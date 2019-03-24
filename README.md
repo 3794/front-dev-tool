@@ -12,4 +12,4 @@ http://127.0.0.1:8080/?sp=.abc,background-color,red&sp=.def,width,100,px&gv=glob
 * sp=selector, property, value[, type(px | %)] 
 
 ### gv: global variable
-* gv=variable, value[, type(px | %)]
+* gv=variable, value[, type(number)]
