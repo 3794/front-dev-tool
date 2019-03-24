@@ -5,7 +5,7 @@
 npm start
 ```
 then open browser   
-http://127.0.0.1:8080/?sp=.abc,background-color,red&sp=.def,width,100,px&gv=globalValue,hello
+http://127.0.0.1:8080/?sp=.abc,background-color,red&sp=.def,width,100,px&gv=globalVar,hello
 
 ## Options
 ### sp: style property
